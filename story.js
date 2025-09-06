@@ -51,7 +51,19 @@ const story = {
         { text: "I don't know. I am just following the light.", next: "godsDiscovery" }
       ] 
     },
-    godsJustice: { text: "The path of justice unfolds...", background: "assets/img/Cosmic_Void.png", narration: "Your journey continues.", choices: [{text:"Continue", next:"scene1"}] },
+    godsJustice: { 
+      text: "The void coalesces into a vision. You see a starving man stealing bread to feed his family from a wealthy merchant who earned his gold through exploitation.", 
+      background: "assets/img/Vision_of_Conflict.png", 
+      narration: "The scales of justice are yours to command. What is your judgment?", 
+      choices: [
+        { text: "The thief must be punished. The law is absolute.", next: "justiceLaw" },
+        { text: "The merchant is the true criminal. Justice is about equity.", next: "justiceEquity" },
+        { text: "Punishment solves nothing. I will offer a path to resolution for both.", next: "justiceMercy" }
+      ] 
+    },
+    justiceLaw: { text: "You have chosen the path of absolute law...", background: "assets/img/Vision_of_Conflict.png", narration: "The consequences unfold.", choices: [{text:"Continue", next:"scene1"}] },
+    justiceEquity: { text: "You have chosen the path of equity...", background: "assets/img/Vision_of_Conflict.png", narration: "The consequences unfold.", choices: [{text:"Continue", next:"scene1"}] },
+    justiceMercy: { text: "You have chosen the path of mercy...", background: "assets/img/Vision_of_Conflict.png", narration: "The consequences unfold.", choices: [{text:"Continue", next:"scene1"}] },
     godsAmbition: { text: "The path of ambition unfolds...", background: "assets/img/Cosmic_Void.png", narration: "Your journey continues.", choices: [{text:"Continue", next:"scene1"}] },
     godsDiscovery: { text: "The path of discovery unfolds...", background: "assets/img/Cosmic_Void.png", narration: "Your journey continues.", choices: [{text:"Continue", next:"scene1"}] },
     godsFight:{ text:"You dare fight...", background:"assets/img/Celestial_Gate.png", narration:"Battle begins.", choices:[{text:"Continue", next:"scene1"}] },

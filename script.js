@@ -1,4 +1,4 @@
-    // --- AUDIO ---
+// --- AUDIO ---
     let ambient, godsVoice;
     function initAudio() {
       ambient = new Howl({
@@ -147,7 +147,44 @@
         return;
       }
 
-      // fade out current UI
+      // Special animation for walking through the gate
+      if (nextKey === 'godsGate') {
+        dialogueBox.classList.add('fade-out'); // Fade out dialogue
+        mainCharacter.classList.add('walk-towards-gate'); // Start walk animation
+
+        // After walk animation, transition the scene
+        setTimeout(() => {
+          bgImage.classList.add('fade-out'); // Fade out background
+
+          setTimeout(() => {
+            // Reset character state for the next scene
+            mainCharacter.classList.remove('walk-towards-gate');
+            mainCharacter.style.opacity = 0; // Keep character hidden
+            
+            // Reset dialogue
+            dialogueText.textContent = "";
+            choicesBox.innerHTML = "";
+            dialogueBox.classList.add('hidden');
+            dialogueBox.classList.remove('fade-out');
+
+            // Swap background for the new scene
+            bgImage.src = scene.background;
+            bgImage.onload = () => {
+              bgImage.classList.remove('fade-out');
+              bgImage.classList.add('fade-in');
+              setTimeout(() => bgImage.classList.add('focused'), 250);
+            };
+
+            // In the cosmic void, the character is not visible, so we just show the dialogue.
+            setTimeout(() => {
+              showDialogueForScene(scene);
+            }, 900);
+          }, 700); // Wait for bg fade-out
+        }, 1500); // Wait for walk animation (1.5s)
+        return; // End here for this special case
+      }
+
+      // --- Default Scene Transition ---
       dialogueBox.classList.add('fade-out');
       mainCharacter.classList.add('fade-out');
       bgImage.classList.add('fade-out');
@@ -158,7 +195,7 @@
         dialogueText.textContent = "";
         choicesBox.innerHTML = "";
         dialogueBox.classList.add('hidden');
-        dialogueBox.classList.remove('fade-out'); // <-- Fix: remove fade-out class
+        dialogueBox.classList.remove('fade-out');
 
         // swap background
         bgImage.src = scene.background;
@@ -172,6 +209,7 @@
 
         // bring character back (keeps left position)
         mainCharacter.classList.remove('fade-out');
+        mainCharacter.style.opacity = ''; // Reset any inline opacity
         mainCharacter.classList.add('visible', 'drift-left');
 
         // small delay then display dialogue + narration

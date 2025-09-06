@@ -58,10 +58,30 @@ body {
     }
     #mainCharacter.visible { opacity: 1; }
     #mainCharacter.drift-left { left: 18%; }
+
+    @keyframes walk-and-ascend {
+      0% {
+        left: 18%;
+        bottom: 2%;
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+      }
+      40% {
+        left: 50%;
+        bottom: 2%;
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+      }
+      100% {
+        left: 50%;
+        bottom: 60%;
+        transform: translateX(-50%) scale(0.4);
+        opacity: 0;
+      }
+    }
+
     #mainCharacter.walk-towards-gate {
-      bottom: 60%;
-      transform: translateX(-50%) scale(0.4);
-      opacity: 0;
+      animation: walk-and-ascend 2.5s ease-in-out forwards;
     }
 
     /* Dialogue box (inside canvas) */
